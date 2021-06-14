@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>601</width>
+    <height>618</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color:rgb(54, 54, 54);</string>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>50</y>
+     <width>181</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:rgb(255,255,255);font-size:28pt;</string>
+   </property>
+   <property name="text">
+    <string>Explorador</string>
+   </property>
+  </widget>
+  <widget class="QTableView" name="tbexplorador">
+   <property name="geometry">
+    <rect>
+     <x>95</x>
+     <y>180</y>
+     <width>421</width>
+     <height>201</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnselect">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>450</y>
+     <width>148</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(167,168,167);;border-style: outset;border-width: 2px;  border-radius: 10px;border-color: beige; font: bold 15px; min-width: 8em;</string>
+   </property>
+   <property name="text">
+    <string>Seleccionar</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btntodo">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>450</y>
+     <width>148</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(167,168,167);;border-style: outset;border-width: 2px;  border-radius: 10px;border-color: beige; font: bold 15px; min-width: 8em;</string>
+   </property>
+   <property name="text">
+    <string>Todo</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btncancelar">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>530</y>
+     <width>148</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(167,168,167);;border-style: outset;border-width: 2px;  border-radius: 10px;border-color: beige; font: bold 15px; min-width: 8em;</string>
+   </property>
+   <property name="text">
+    <string>Cancelar</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>601</width>
+    <height>618</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color:rgb(54, 54, 54);</string>
+  </property>
+  <widget class="QTableView" name="tbarchivos">
+   <property name="geometry">
+    <rect>
+     <x>15</x>
+     <y>120</y>
+     <width>571</width>
+     <height>261</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnpush">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>430</y>
+     <width>31</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(167,168,167);;border-style: outset;border-width: 2px;  border-radius: 10px;border-color: beige; font: bold 15px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>../resources/24_373.png</normaloff>../resources/24_373.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>37</width>
+     <height>37</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnpull">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>430</y>
+     <width>31</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(167,168,167);;border-style: outset;border-width: 2px;  border-radius: 10px;border-color: beige; font: bold 15px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>../resources/flecha_abajo.png</normaloff>../resources/flecha_abajo.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>37</width>
+     <height>37</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnversion">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>430</y>
+     <width>29</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(167,168,167);border-style: outset;border-width: 2px;  border-radius: 10px;border-color: beige; font: bold 15px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>../resources/versiones.png</normaloff>../resources/versiones.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>37</width>
+     <height>37</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnpermisos">
+   <property name="geometry">
+    <rect>
+     <x>480</x>
+     <y>410</y>
+     <width>31</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(167,168,167);;border-style: outset;border-width: 2px;  border-radius: 10px;border-color: beige; font: bold 15px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>../resources/user.png</normaloff>../resources/user.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>37</width>
+     <height>37</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnlog">
+   <property name="geometry">
+    <rect>
+     <x>540</x>
+     <y>410</y>
+     <width>31</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(167,168,167);;border-style: outset;border-width: 2px;  border-radius: 10px;border-color: beige; font: bold 15px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>../resources/logout.png</normaloff>../resources/logout.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>37</width>
+     <height>37</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnborrar">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>520</y>
+     <width>31</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(167,168,167);;border-style: outset;border-width: 2px;  border-radius: 10px;border-color: beige; font: bold 15px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>../resources/bucked.png</normaloff>../resources/bucked.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>37</width>
+     <height>37</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnarchivo">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>520</y>
+     <width>31</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(167,168,167);;border-style: outset;border-width: 2px;  border-radius: 10px;border-color: beige; font: bold 15px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>../resources/Carpeta.png</normaloff>../resources/Carpeta.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>37</width>
+     <height>37</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btncrear">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>520</y>
+     <width>31</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(167,168,167);;border-style: outset;border-width: 2px;  border-radius: 10px;border-color: beige; font: bold 15px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>../resources/lapiz.png</normaloff>../resources/lapiz.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>37</width>
+     <height>37</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>30</y>
+     <width>141</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:rgb(255,255,255);font-size:28pt;</string>
+   </property>
+   <property name="text">
+    <string>Principal</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
