@@ -13,16 +13,27 @@ class Login(QDialog):
         self.txtcontrasenia.setEchoMode(QtWidgets.QLineEdit.Password)
         self.btnregistrarse.clicked.connect(self.ventanaregistrarse)
        
-       
-
     def btningresarfunction(self):
-        priview = Principal()
-        widget.addWidget(priview)
-        widget.setCurrentIndex(widget.currentIndex()+1)
         usuario = self.txtusuario.text()
         contrasenia = self.txtcontrasenia.text()
-        print("Sesion iniciada con exito con el usuario: ",usuario, "y contraseña: ",contrasenia)
+        if self.auth(usuario, contrasenia):
+            priview = Principal()
+            widget.addWidget(priview)
+            widget.setCurrentIndex(widget.currentIndex()+1)
+            print("Sesion iniciada con exito con el usuario: ",usuario, "y contraseña: ",contrasenia)
+        else:
+            self.lblAuth.setText('Credenciales no encontradas')
 
+    #se abre el archivo y se recorre los usuarios
+    def auth(self, user, password):
+        with open('usuarios.txt') as json_file:
+            data = json.load(json_file)
+            for item in data['usuarios']: 
+                if item['usuario'] == user and item['password'] == password:
+                    print('Encontrado')
+                    return True
+            print('No encontrado')
+            return False #no lo encuentra
 
     def ventanaregistrarse(self):
         cuenta = funcion()
@@ -34,17 +45,33 @@ class funcion(QDialog):
         super(funcion,self).__init__()
         loadUi("view/registrarse.ui",self)
         self.btnagregar.clicked.connect(self.crearfuncion)
-        self.cbcuenta.addItems(["Administrador", "Usuario"])
-        self.cbcuenta.setCurrentIndex(-1)
+        self.cbcuenta.addItems(["Administrador", "Normal"])
+        self.cbcuenta.setCurrentIndex(1)
+
+    def addjson(self, user, password, tipo):
+        usuario = {'usuario':user, 'password':password, 'tipo':tipo}
+        
+        aux = {}
+        aux['usuarios'] = []
+
+        with open('usuarios.txt') as json_file:
+            data = json.load(json_file)
+            aux['usuarios'] = data['usuarios']
+
+        aux['usuarios'].append(usuario)
+        with open('usuarios.txt', 'w') as outfile:
+            json.dump(aux, outfile)
 
     def crearfuncion(self):
-         nombre = self.txtnombre.text()
-         if self.txtpass.text() == self.txtpasscon.text():
-             contra = self.txtpass.text()
-             print("Se creo la cuenta con el usuario: ",nombre, "y contraseña: ",contra)
-             login = Login()
-             widget.addWidget(login)
-             widget.setCurrentIndex(widget.currentIndex()+1)
+        if self.txtpass.text() != '' and self.txtnombre.text() != '':
+            usuario = self.txtnombre.text()
+            tipo = str(self.cbcuenta.currentText()) #tipo de usuario
+            password = self.txtpass.text() #password
+            self.addjson(usuario, password, tipo)
+            print("Se creo la cuenta con el usuario: ",usuario, "y contraseña: ",password)
+            login = Login()
+            widget.addWidget(login)
+            widget.setCurrentIndex(widget.currentIndex()+1)
 
 class Principal(QDialog):
     def __init__(self):
