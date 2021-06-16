@@ -1,6 +1,7 @@
 import sys
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QDialog, QApplication
+from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import QDialog, QApplication, QFileDialog
 from PyQt5.uic import loadUi
 import json
 
@@ -77,17 +78,48 @@ class Principal(QDialog):
     def __init__(self):
         super(Principal,self).__init__()
         loadUi("view/git.ui",self)
-    
+        self.btnarchivo.clicked.connect(self.archivos)
+        self.btnlog.clicked.connect(self.volver)
+        self.btnversion.clicked.connect(self.ventanaexplorar)
+
     def principalview(self):
         log = Login()
         widget.addWidget(log)
         widget.setCurrentIndex(widget.currentIndex()+1)
+
+    def archivos(self):
+      filename = QFileDialog.getOpenFileName()
+      nom = filename[0]
+      print(nom)
+
+      with open(nom, "r") as f:
+          print(f.readline())
+    
+    def volver(self):
+      login = Login()
+      widget.addWidget(login)
+      widget.setCurrentIndex(widget.currentIndex()+1)
+    
+    def ventanaexplorar(self):
+       ex = Explorador()
+       widget.addWidget(ex)
+       widget.setCurrentIndex(widget.currentIndex()+1)
+
+class Explorador(QDialog):
+    def __init__(self):
+        super(Explorador,self).__init__()
+        loadUi("view/explorador.ui",self)
+
+
+
 
 
 app = QApplication(sys.argv)
 mainwindows = Login()
 widget = QtWidgets.QStackedWidget()
 widget.addWidget(mainwindows)
+widget.setWindowTitle("Control de Versiones")
+widget.setWindowIcon(QIcon("resources/icono.png"))
 widget.setFixedWidth(601)
 widget.setFixedHeight(618)
 widget.show()

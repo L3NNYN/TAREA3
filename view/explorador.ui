@@ -77,7 +77,7 @@
   <widget class="QPushButton" name="btncancelar">
    <property name="geometry">
     <rect>
-     <x>240</x>
+     <x>230</x>
      <y>530</y>
      <width>148</width>
      <height>41</height>
