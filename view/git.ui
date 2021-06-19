@@ -16,16 +16,6 @@
   <property name="styleSheet">
    <string notr="true">background-color:rgb(54, 54, 54);</string>
   </property>
-  <widget class="QTableView" name="tbarchivos">
-   <property name="geometry">
-    <rect>
-     <x>15</x>
-     <y>120</y>
-     <width>571</width>
-     <height>261</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QPushButton" name="btnpush">
    <property name="geometry">
     <rect>
@@ -249,6 +239,21 @@
    <property name="text">
     <string>Principal</string>
    </property>
+  </widget>
+  <widget class="QTableWidget" name="tbarchivo">
+   <property name="geometry">
+    <rect>
+     <x>15</x>
+     <y>120</y>
+     <width>571</width>
+     <height>261</height>
+    </rect>
+   </property>
+   <column>
+    <property name="text">
+     <string>Archivo</string>
+    </property>
+   </column>
   </widget>
  </widget>
  <resources/>

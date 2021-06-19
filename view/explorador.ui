@@ -32,16 +32,6 @@
     <string>Explorador</string>
    </property>
   </widget>
-  <widget class="QTableView" name="tbexplorador">
-   <property name="geometry">
-    <rect>
-     <x>95</x>
-     <y>180</y>
-     <width>421</width>
-     <height>201</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QPushButton" name="btnselect">
    <property name="geometry">
     <rect>
@@ -88,6 +78,16 @@
    </property>
    <property name="text">
     <string>Cancelar</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>85</x>
+     <y>160</y>
+     <width>421</width>
+     <height>201</height>
+    </rect>
    </property>
   </widget>
  </widget>

@@ -1,9 +1,11 @@
 import sys
 from PyQt5 import QtWidgets
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QDialog, QApplication, QFileDialog
+from PyQt5.QtWidgets import QDialog, QApplication, QFileDialog, QTableWidgetItem
 from PyQt5.uic import loadUi
 import json
+import os
+import errno
 
 class Login(QDialog):
 
@@ -73,6 +75,11 @@ class funcion(QDialog):
             login = Login()
             widget.addWidget(login)
             widget.setCurrentIndex(widget.currentIndex()+1)
+            try:
+                os.mkdir('CarpetasRepositorio/'+ usuario)
+            except OSError as e:
+                if e.errno != errno.EEXIST:
+                    raise
 
 class Principal(QDialog):
     def __init__(self):
@@ -81,6 +88,7 @@ class Principal(QDialog):
         self.btnarchivo.clicked.connect(self.archivos)
         self.btnlog.clicked.connect(self.volver)
         self.btnversion.clicked.connect(self.ventanaexplorar)
+        self.tbarchivo.setColumnWidth(0,571)
 
     def principalview(self):
         log = Login()
@@ -90,6 +98,7 @@ class Principal(QDialog):
     def archivos(self):
       filename = QFileDialog.getOpenFileName()
       nom = filename[0]
+      self.tbarchivos.setData(nom)
       print(nom)
 
       with open(nom, "r") as f:
@@ -109,10 +118,6 @@ class Explorador(QDialog):
     def __init__(self):
         super(Explorador,self).__init__()
         loadUi("view/explorador.ui",self)
-
-
-
-
 
 app = QApplication(sys.argv)
 mainwindows = Login()
