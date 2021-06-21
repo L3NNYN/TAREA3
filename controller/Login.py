@@ -1,12 +1,15 @@
 import sys
+import shutil
 from PyQt5 import QtWidgets
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QDialog, QApplication, QFileDialog, QTableWidgetItem
 from PyQt5.uic import loadUi
 import json
 import os
+import os.path
 import errno
 
+usu=''
 class Login(QDialog):
 
     def __init__(self):
@@ -17,12 +20,14 @@ class Login(QDialog):
         self.btnregistrarse.clicked.connect(self.ventanaregistrarse)
        
     def btningresarfunction(self):
+        global usu
         usuario = self.txtusuario.text()
         contrasenia = self.txtcontrasenia.text()
         if self.auth(usuario, contrasenia):
             priview = Principal()
             widget.addWidget(priview)
             widget.setCurrentIndex(widget.currentIndex()+1)
+            usu=usuario
             print("Sesion iniciada con exito con el usuario: ",usuario, "y contraseña: ",contrasenia)
         else:
             self.lblAuth.setText('Credenciales no encontradas')
@@ -77,6 +82,8 @@ class funcion(QDialog):
             widget.setCurrentIndex(widget.currentIndex()+1)
             try:
                 os.mkdir('CarpetasRepositorio/'+ usuario)
+                os.mkdir('CarpetasRepositorio/'+ usuario+'/perm')
+                os.mkdir('CarpetasRepositorio/'+ usuario+'/temp')
             except OSError as e:
                 if e.errno != errno.EEXIST:
                     raise
@@ -90,6 +97,7 @@ class Principal(QDialog):
         self.btnversion.clicked.connect(self.ventanaexplorar)
         self.tbarchivo.setColumnWidth(0,571)
         self.btnborrar.clicked.connect(self.borrar)
+        self.btnpush.clicked.connect(self.push)
 
 
     def principalview(self):
@@ -98,16 +106,15 @@ class Principal(QDialog):
         widget.setCurrentIndex(widget.currentIndex()+1)
 
     def archivos(self):
-      global row
+      global row, usu
       filename = QFileDialog.getOpenFileName()
       nom = filename[0]
       self.tbarchivo.setRowCount(row+1)
-      self.tbarchivo.setItem(row, 0, QtWidgets.QTableWidgetItem(str(nom)))
+      self.tbarchivo.setItem(row, 0, QtWidgets.QTableWidgetItem(os.path.basename(nom)))
+      
       row=row+1
-      print(nom)
-
-      with open(nom, "r") as f:
-          print(f.readline())
+      target='CarpetasRepositorio/'+usu+'/temp/'+os.path.basename(nom)
+      shutil.copyfile(nom, target)
     
     def volver(self):
       login = Login()
@@ -123,6 +130,19 @@ class Principal(QDialog):
         global row
         self.tbarchivo.removeRow(self.tbarchivo.currentRow())
         row=row-1
+
+    def push(self):
+        global row, usu
+        x=0
+        for x in range(row):
+            print(self.tbarchivo.item(x, 0).data(0))
+            target='CarpetasRepositorio/'+usu+'/perm/'+str(self.tbarchivo.item(x, 0).data(0))
+            source='CarpetasRepositorio/'+usu+'/temp/'+str(self.tbarchivo.item(x, 0).data(0))
+            shutil.copyfile(source, target)
+            os.remove(source)
+        row = 0
+        self.tbarchivo.clear()
+        self.tbarchivo.clearContents()
 
 
 
