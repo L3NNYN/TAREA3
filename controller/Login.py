@@ -80,7 +80,7 @@ class funcion(QDialog):
             except OSError as e:
                 if e.errno != errno.EEXIST:
                     raise
-
+row=0
 class Principal(QDialog):
     def __init__(self):
         super(Principal,self).__init__()
@@ -89,6 +89,8 @@ class Principal(QDialog):
         self.btnlog.clicked.connect(self.volver)
         self.btnversion.clicked.connect(self.ventanaexplorar)
         self.tbarchivo.setColumnWidth(0,571)
+        self.btnborrar.clicked.connect(self.borrar)
+
 
     def principalview(self):
         log = Login()
@@ -96,11 +98,12 @@ class Principal(QDialog):
         widget.setCurrentIndex(widget.currentIndex()+1)
 
     def archivos(self):
-      row=0
+      global row
       filename = QFileDialog.getOpenFileName()
       nom = filename[0]
-      self.tbarchivo.setRowCount(1);
+      self.tbarchivo.setRowCount(row+1)
       self.tbarchivo.setItem(row, 0, QtWidgets.QTableWidgetItem(str(nom)))
+      row=row+1
       print(nom)
 
       with open(nom, "r") as f:
@@ -115,6 +118,13 @@ class Principal(QDialog):
        ex = Explorador()
        widget.addWidget(ex)
        widget.setCurrentIndex(widget.currentIndex()+1)
+
+    def borrar(self):
+        global row
+        self.tbarchivo.removeRow(self.tbarchivo.currentRow())
+        row=row-1
+
+
 
 class Explorador(QDialog):
     def __init__(self):
