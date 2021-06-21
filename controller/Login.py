@@ -98,6 +98,7 @@ class Principal(QDialog):
         self.tbarchivo.setColumnWidth(0,571)
         self.btnborrar.clicked.connect(self.borrar)
         self.btnpush.clicked.connect(self.push)
+        self.btnpull.clicked.connect(self.pull)
 
 
     def principalview(self):
@@ -130,6 +131,7 @@ class Principal(QDialog):
         global row
         self.tbarchivo.removeRow(self.tbarchivo.currentRow())
         row=row-1
+        self.tbarchivo.setRowCount(row)
 
     def push(self):
         global row, usu
@@ -141,8 +143,36 @@ class Principal(QDialog):
             shutil.copyfile(source, target)
             os.remove(source)
         row = 0
-        self.tbarchivo.clear()
         self.tbarchivo.clearContents()
+        self.tbarchivo.setRowCount(0)
+
+    def pull(self):
+        global row, usu
+
+        
+        user_temp = 'CarpetasRepositorio/'+usu+'/temp/'
+        temp_count = os.listdir(user_temp)
+        
+        aux=''
+        for aux in temp_count:
+            source = user_perm = 'CarpetasRepositorio/'+usu+'/temp/'+aux
+            os.remove(source)
+        row = 0
+        self.tbarchivo.clearContents()
+        self.tbarchivo.setRowCount(0)
+
+        user_perm = 'CarpetasRepositorio/'+usu+'/perm/'
+        perm_count = os.listdir(user_perm)
+
+        aux2=''
+        self.tbarchivo.setRowCount(len(perm_count))
+        for aux2 in perm_count:
+            source = user_perm = 'CarpetasRepositorio/'+usu+'/perm/'+aux2
+            self.tbarchivo.setItem(row, 0, QtWidgets.QTableWidgetItem(aux2))
+
+            row=row+1
+            target='CarpetasRepositorio/'+usu+'/temp/'+aux2
+            shutil.copyfile(source, target)
 
 
 
