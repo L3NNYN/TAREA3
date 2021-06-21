@@ -96,9 +96,11 @@ class Principal(QDialog):
         widget.setCurrentIndex(widget.currentIndex()+1)
 
     def archivos(self):
+      row=0
       filename = QFileDialog.getOpenFileName()
       nom = filename[0]
-      self.tbarchivos.setData(nom)
+      self.tbarchivo.setRowCount(1);
+      self.tbarchivo.setItem(row, 0, QtWidgets.QTableWidgetItem(str(nom)))
       print(nom)
 
       with open(nom, "r") as f:
