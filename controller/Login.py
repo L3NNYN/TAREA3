@@ -89,14 +89,12 @@ class funcion(QDialog):
                 os.mkdir('CarpetasRepositorio/'+ usuario+'/temp')
                 os.mkdir('CarpetasRepositorio/'+usuario+'/version')
                 self.versionNuevo(usuario, 0)
-                print
             except OSError as e:
                 if e.errno != errno.EEXIST:
                     raise
 
     def versionNuevo(self,usuario, p):
         try:
-            print('llego')
             if p == 1:
                 cont = 0
                 data = {}
