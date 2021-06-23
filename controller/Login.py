@@ -57,15 +57,18 @@ class funcion(QDialog):
         self.cbcuenta.setCurrentIndex(1)
 
     def addjson(self, user, password, tipo):
+        #se crea el objeto del usuario
         usuario = {'usuario':user, 'password':password, 'tipo':tipo}
         
         aux = {}
         aux['usuarios'] = []
-
+        
+        #se abre el archivo y se obtiene el array de usuarios
         with open('usuarios.txt') as json_file:
             data = json.load(json_file)
             aux['usuarios'] = data['usuarios']
 
+        #se agrega el nuevo usuario y se guarda en el archivo
         aux['usuarios'].append(usuario)
         with open('usuarios.txt', 'w') as outfile:
             json.dump(aux, outfile)
@@ -84,9 +87,47 @@ class funcion(QDialog):
                 os.mkdir('CarpetasRepositorio/'+ usuario)
                 os.mkdir('CarpetasRepositorio/'+ usuario+'/perm')
                 os.mkdir('CarpetasRepositorio/'+ usuario+'/temp')
+                os.mkdir('CarpetasRepositorio/'+usuario+'/version')
+                self.versionNuevo(usuario, 0)
+                print
             except OSError as e:
                 if e.errno != errno.EEXIST:
                     raise
+
+    def versionNuevo(self,usuario, p):
+        try:
+            print('llego')
+            if p == 1:
+                cont = 0
+                data = {}
+                with open('CarpetasRepositorio/'+usuario+'/version/v.txt') as version_file:
+                    data = json.load(version_file)
+                    cont = data['conteo']
+                
+                os.mkdir('CarpetasRepositorio/'+usuario+'/version/'+str(cont))
+
+                with open('CarpetasRepositorio/'+usuario+'/version/v.txt','w') as version_file:
+                    json.dump({'conteo': cont+1}, version_file)
+                
+                return cont
+            else:    
+                with open('CarpetasRepositorio/'+usuario+'/version/v.txt', 'w') as version_file:
+                    json.dump({'conteo':1}, version_file)
+        except Exception as e:
+            print(e)
+
+    def agregarVersion(self, usu, cont):
+        try:
+                target = 'CarpetasRepositorio/'+usu+'/version/'+str(cont)
+                user_perm = 'CarpetasRepositorio/'+usu+'/perm/'
+                perm_count = os.listdir(user_perm)
+                aux=''
+                for aux in perm_count:
+                    source = user_perm = 'CarpetasRepositorio/'+usu+'/perm/'+aux
+                    shutil.copy(source, target)
+        except Exception as e:
+            print(e)
+
 row=0
 class Principal(QDialog):
     def __init__(self):
@@ -145,6 +186,10 @@ class Principal(QDialog):
         row = 0
         self.tbarchivo.clearContents()
         self.tbarchivo.setRowCount(0)
+        #primero se crea la carpeta con el numero de vesion correspondiente
+        cont = funcion.versionNuevo(self, usu, 1)
+        #luego se agregan los archivos en perm a la carpeta creada
+        funcion.agregarVersion(self, usu, cont)
 
     def pull(self):
         global row, usu
