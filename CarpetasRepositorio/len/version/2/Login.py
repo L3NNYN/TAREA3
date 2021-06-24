@@ -158,8 +158,6 @@ class Principal(QDialog):
       login = Login()
       widget.addWidget(login)
       widget.setCurrentIndex(widget.currentIndex()+1)
-      global row
-      row = 0
     
     def ventanaexplorar(self):
        ex = Explorador()
@@ -228,8 +226,8 @@ class Explorador(QDialog):
         self.btnrecuperar.clicked.connect(self.recuperar)
         self.version()
         
-        global estado,row
-        row = 0
+        global estado
+
         estado = True
 
     def load(self):
@@ -273,11 +271,7 @@ class Explorador(QDialog):
     def recuperar(self):
         global row, usu, estado
 
-        if self.tbexplorar2.currentRow() >= 0:
-            estado = False
-        else:
-            estado = True
-
+        print(self.tbexplorar2.currentRow()>0)
         if estado == True:
 
             user_temp = 'CarpetasRepositorio/'+usu+'/perm/'
@@ -300,12 +294,7 @@ class Explorador(QDialog):
                 target='CarpetasRepositorio/'+usu+'/perm/'+aux2
                 shutil.copyfile(source, target)
         else:
-            x = self.tbexplorar2.currentRow()
-            archivo = str(self.tbexplorar2.item(x, 0).data(0))
-            version = str(self.tbexplorar.currentRow()+1)
-            source = 'CarpetasRepositorio/'+usu+'/version/' + version + '/'+ archivo
-            target = 'CarpetasRepositorio/'+usu+'/perm/'+ archivo
-            shutil.copyfile(source, target)
+            print()
 
 
 app = QApplication(sys.argv)
