@@ -36,8 +36,8 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>150</y>
-     <width>191</width>
+     <y>220</y>
+     <width>151</width>
      <height>31</height>
     </rect>
    </property>
@@ -51,9 +51,9 @@
   <widget class="QLineEdit" name="txtnombre">
    <property name="geometry">
     <rect>
-     <x>220</x>
-     <y>150</y>
-     <width>311</width>
+     <x>180</x>
+     <y>220</y>
+     <width>351</width>
      <height>31</height>
     </rect>
    </property>
@@ -67,8 +67,8 @@ border: 2px solid darkgray</string>
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>250</y>
-     <width>191</width>
+     <y>340</y>
+     <width>151</width>
      <height>31</height>
     </rect>
    </property>
@@ -82,9 +82,9 @@ border: 2px solid darkgray</string>
   <widget class="QLineEdit" name="txtpass">
    <property name="geometry">
     <rect>
-     <x>220</x>
-     <y>250</y>
-     <width>311</width>
+     <x>180</x>
+     <y>340</y>
+     <width>351</width>
      <height>31</height>
     </rect>
    </property>
@@ -108,35 +108,6 @@ color: rgb(243, 243, 243);
    </property>
    <property name="text">
     <string>Registrarse</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_4">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>350</y>
-     <width>191</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font-size:15pt;color:rgb(255,0,127);</string>
-   </property>
-   <property name="text">
-    <string>Cuenta:</string>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="cbcuenta">
-   <property name="geometry">
-    <rect>
-     <x>220</x>
-     <y>351</y>
-     <width>311</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"> border: 1px solid gray; border-radius: 3px; padding: 1px 18px 1px 3px; min-width: 6em;  border: 2px solid darkgray;  selection-background-color: lightgray;font-size: 14pt; color: rgb(243, 243, 243);</string>
    </property>
   </widget>
  </widget>

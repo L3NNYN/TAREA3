@@ -9,7 +9,8 @@ import os
 import os.path
 import errno
 
-usu=''
+usu='' 
+estado = True
 class Login(QDialog):
 
     def __init__(self):
@@ -53,12 +54,10 @@ class funcion(QDialog):
         super(funcion,self).__init__()
         loadUi("view/registrarse.ui",self)
         self.btnagregar.clicked.connect(self.crearfuncion)
-        self.cbcuenta.addItems(["Administrador", "Normal"])
-        self.cbcuenta.setCurrentIndex(1)
 
-    def addjson(self, user, password, tipo):
+    def addjson(self, user, password):
         #se crea el objeto del usuario
-        usuario = {'usuario':user, 'password':password, 'tipo':tipo}
+        usuario = {'usuario':user, 'password':password}
         
         aux = {}
         aux['usuarios'] = []
@@ -76,9 +75,8 @@ class funcion(QDialog):
     def crearfuncion(self):
         if self.txtpass.text() != '' and self.txtnombre.text() != '':
             usuario = self.txtnombre.text()
-            tipo = str(self.cbcuenta.currentText()) #tipo de usuario
             password = self.txtpass.text() #password
-            self.addjson(usuario, password, tipo)
+            self.addjson(usuario, password)
             print("Se creo la cuenta con el usuario: ",usuario, "y contraseña: ",password)
             login = Login()
             widget.addWidget(login)
@@ -210,19 +208,92 @@ class Principal(QDialog):
         aux2=''
         self.tbarchivo.setRowCount(len(perm_count))
         for aux2 in perm_count:
-            source = user_perm = 'CarpetasRepositorio/'+usu+'/perm/'+aux2
+            source = 'CarpetasRepositorio/'+usu+'/perm/'+aux2
             self.tbarchivo.setItem(row, 0, QtWidgets.QTableWidgetItem(aux2))
 
             row=row+1
             target='CarpetasRepositorio/'+usu+'/temp/'+aux2
             shutil.copyfile(source, target)
 
-
-
 class Explorador(QDialog):
     def __init__(self):
         super(Explorador,self).__init__()
         loadUi("view/explorador.ui",self)
+        self.tbexplorar.setColumnWidth(0,271)
+        self.tbexplorar2.setColumnWidth(0,271)
+        self.btnselect.clicked.connect(self.load)
+        self.btncancelar.clicked.connect(self.cancelar)
+        self.btnrecuperar.clicked.connect(self.recuperar)
+        self.version()
+        
+        global estado
+
+        estado = True
+
+    def load(self):
+        global row, usu, estado
+        col = self.tbexplorar.currentRow()+1
+
+        self.tbexplorar2.clearContents()
+        self.tbexplorar2.setRowCount(0)
+
+        dirname = 'CarpetasRepositorio/'+usu+'/version/'+str(col)+'/'
+        dirfile = os.listdir(dirname)
+        print(dirfile)
+
+        aux2=''
+        self.tbexplorar2.setRowCount(len(dirfile))
+        for aux2 in dirfile:
+            self.tbexplorar2.setItem(row, 0, QtWidgets.QTableWidgetItem(aux2)) 
+            row=row+1
+            print(aux2)
+
+        estado = False
+
+    def version(self):
+        global row, usu
+        dirname = 'CarpetasRepositorio/'+usu+'/version/'
+        dirfile = os.listdir(dirname)
+
+        aux2=''
+        self.tbexplorar.setRowCount(len(dirfile)-1)
+        for aux2 in dirfile:
+           if aux2 != 'v.txt':
+               self.tbexplorar.setItem(row, 0, QtWidgets.QTableWidgetItem(aux2)) 
+               row=row+1
+   
+    def cancelar(self):
+        git = Principal()
+        widget.addWidget(git)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+
+    def recuperar(self):
+        global row, usu, estado
+
+        if estado == True:
+
+            user_temp = 'CarpetasRepositorio/'+usu+'/perm/'
+            temp_count = os.listdir(user_temp)
+
+            aux=''
+            for aux in temp_count:
+                source = user_perm = 'CarpetasRepositorio/'+usu+'/perm/'+aux
+                os.remove(source)
+            row = 0
+
+            user_perm = 'CarpetasRepositorio/'+usu+'/version/'+str(self.tbexplorar.currentRow()+1)+'/'
+            perm_count = os.listdir(user_perm)
+
+            aux2=''
+            for aux2 in perm_count:
+                source = user_perm + aux2
+
+                row=row+1
+                target='CarpetasRepositorio/'+usu+'/perm/'+aux2
+                shutil.copyfile(source, target)
+        else:
+            print()
+
 
 app = QApplication(sys.argv)
 mainwindows = Login()

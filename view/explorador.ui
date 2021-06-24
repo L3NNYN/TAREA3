@@ -35,8 +35,8 @@
   <widget class="QPushButton" name="btnselect">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>450</y>
+     <x>110</x>
+     <y>460</y>
      <width>148</width>
      <height>41</height>
     </rect>
@@ -45,29 +45,44 @@
     <string notr="true">background-color: rgb(167,168,167);;border-style: outset;border-width: 2px;  border-radius: 10px;border-color: beige; font: bold 15px; min-width: 8em;</string>
    </property>
    <property name="text">
-    <string>Seleccionar</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btntodo">
-   <property name="geometry">
-    <rect>
-     <x>320</x>
-     <y>450</y>
-     <width>148</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(167,168,167);;border-style: outset;border-width: 2px;  border-radius: 10px;border-color: beige; font: bold 15px; min-width: 8em;</string>
-   </property>
-   <property name="text">
-    <string>Todo</string>
+    <string>Abrir</string>
    </property>
   </widget>
   <widget class="QPushButton" name="btncancelar">
    <property name="geometry">
     <rect>
-     <x>230</x>
+     <x>310</x>
+     <y>460</y>
+     <width>148</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(167,168,167);;border-style: outset;border-width: 2px;  border-radius: 10px;border-color: beige; font: bold 15px; min-width: 8em;</string>
+   </property>
+   <property name="text">
+    <string>Volver</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tbexplorar">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>150</y>
+     <width>271</width>
+     <height>271</height>
+    </rect>
+   </property>
+   <column>
+    <property name="text">
+     <string>Versiones</string>
+    </property>
+   </column>
+  </widget>
+  <widget class="QPushButton" name="btnrecuperar">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
      <y>530</y>
      <width>148</width>
      <height>41</height>
@@ -77,18 +92,23 @@
     <string notr="true">background-color: rgb(167,168,167);;border-style: outset;border-width: 2px;  border-radius: 10px;border-color: beige; font: bold 15px; min-width: 8em;</string>
    </property>
    <property name="text">
-    <string>Cancelar</string>
+    <string>Recuperar</string>
    </property>
   </widget>
-  <widget class="QTableWidget" name="tableWidget">
+  <widget class="QTableWidget" name="tbexplorar2">
    <property name="geometry">
     <rect>
-     <x>85</x>
-     <y>160</y>
-     <width>421</width>
-     <height>201</height>
+     <x>310</x>
+     <y>150</y>
+     <width>271</width>
+     <height>271</height>
     </rect>
    </property>
+   <column>
+    <property name="text">
+     <string>Archivos</string>
+    </property>
+   </column>
   </widget>
  </widget>
  <resources/>
